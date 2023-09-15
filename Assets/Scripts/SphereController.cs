@@ -4,28 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class SphereController : MonoBehaviour
 {
     public VideoClip[] clips = new VideoClip[4];
     public int currentIndex = 0;
-    public float fadeTime = 1.0f;
+    public float fadeInTime = 1.0f, fadeOutTime = 2.0f;
     
     public GameObject sphere;
     public GameObject screenFade;
 
-    private Renderer Myrenderer;
+    private VideoPlayer sphereCR;
 
     public void Start()
     {
         if (sphere == null)
             sphere = gameObject;
-        Myrenderer = sphere.GetComponent<Renderer>();
+        sphereCR = sphere.GetComponent<VideoPlayer>();
     }
 
     public void LoadArea(int index)
     {
-        throw new NotImplementedException();
+        if (index < 0 || index >= clips.Length)
+            return;
+        sphereCR.clip = clips[index];
     }
 
     private IEnumerator FadeInOut(int index)
@@ -37,26 +40,25 @@ public class SphereController : MonoBehaviour
         //while not faded out yet...
         while(color.a < 1)
         {
-            color.a += (Time.deltaTime / fadeTime);
+            color.a += Time.deltaTime / fadeInTime;
             fade.color = color;
             yield return null;
         }
         //Once fadedout wait on extra frame.
         yield return null;
         //change video clips...
-        Debug.Log("LoadArea(index);");
+        LoadArea(index);
         //wait one extra frame.
         yield return null;
         //fade in
         while(color.a > 0)
         {
             
-            color.a -= (Time.deltaTime / fadeTime);
+            color.a -= Time.deltaTime / fadeOutTime;
             fade.color = color;
             yield return null;
         }
         fade.enabled = false;
-        Debug.Log("END");
     }
 
     public void StartSceneChange(int index)

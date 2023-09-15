@@ -19,24 +19,16 @@ public class AreaChangetest : MonoBehaviour
 
         if(GUILayout.Button("Reload Area"))
         {
-            sphere.StartSceneChange(sphere.currentIndex);
+            sphere.StartSceneChange(-1);
         }
-        if(GUILayout.Button("Cube"))
+        for(int i = 0; i < sphere.clips.Length; i++)
         {
-            Debug.Log("Cube");
+            if(GUILayout.Button("Load Area " + sphere.clips[i].name))
+            {
+                sphere.StartSceneChange(i);
+            }
         }
-        if(GUILayout.Button("Living Room"))
-        {
-            Debug.Log("Living Room");
-        }
-        if(GUILayout.Button("Mezinene"))
-        {
-            Debug.Log("Mezinene");
-        }
-        if(GUILayout.Button("Cantiena"))
-        {
-            Debug.Log("Cantiena");
-        }
+        
     }
 #endif
 
