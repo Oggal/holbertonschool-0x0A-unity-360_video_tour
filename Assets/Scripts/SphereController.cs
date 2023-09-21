@@ -44,12 +44,10 @@ public class SphereController : MonoBehaviour
             fade.color = color;
             yield return null;
         }
-        //Once fadedout wait on extra frame.
-        yield return null;
         //change video clips...
         LoadArea(index);
-        //wait one extra frame.
-        yield return null;
+        while(!sphereCR.isPrepared)
+            yield return null;
         //fade in
         while(color.a > 0)
         {
