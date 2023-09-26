@@ -6,12 +6,6 @@ public class AreaChangetest : MonoBehaviour
 {
     public SphereController sphere;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
 #if UNITY_EDITOR
     // OnGUI is called for rendering and handling GUI events.
     void OnGUI()
@@ -32,9 +26,4 @@ public class AreaChangetest : MonoBehaviour
     }
 #endif
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

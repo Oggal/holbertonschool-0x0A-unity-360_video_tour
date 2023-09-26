@@ -1,0 +1,76 @@
+{
+    "name": "MyXRInputActions",
+    "maps": [
+        {
+            "name": "HMD",
+            "id": "4b3e9ae7-ab2a-4c7c-babf-4e2d235d0c8e",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "dc6bed5d-4927-4a45-aa0f-9cbcfb4fb7d8",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "98780d60-e781-4766-81e6-175829d4b3b7",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "749c729f-a826-40b8-b02e-29d35da675b7",
+                    "path": "<XRHMD>/centerEyePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SimpleXR",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71910dad-c662-40db-a526-f97910e752f9",
+                    "path": "<XRHMD>/centerEyeRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SimpleXR",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "SimpleXR",
+            "bindingGroup": "SimpleXR",
+            "devices": [
+                {
+                    "devicePath": "<XRHMD>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRController>{LeftHand}",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XRController>{RightHand}",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
