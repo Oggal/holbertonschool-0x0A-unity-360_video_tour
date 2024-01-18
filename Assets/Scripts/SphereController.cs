@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
-
+using UnityEngine.Events;
 public class SphereController : MonoBehaviour
 {
     public VideoClip[] clips = new VideoClip[4];
@@ -16,12 +16,17 @@ public class SphereController : MonoBehaviour
     public GameObject screenFade;
 
     private VideoPlayer sphereCR;
+    public UnityEvent<int> OnAreaChange;
+    public UnityEvent<int> OnAreaChangeStart;
+
 
     public void Start()
     {
         if (sphere == null)
             sphere = gameObject;
         sphereCR = sphere.GetComponent<VideoPlayer>();
+
+        StartSceneChange(currentIndex);
     }
 
     public void LoadArea(int index)
@@ -46,6 +51,7 @@ public class SphereController : MonoBehaviour
         }
         //change video clips...
         LoadArea(index);
+        OnAreaChange.Invoke(index);
         while(!sphereCR.isPrepared)
             yield return null;
         //fade in
@@ -61,7 +67,7 @@ public class SphereController : MonoBehaviour
 
     public void StartSceneChange(int index)
     {
-        Debug.Log("StartSceneChange(index);");
+        OnAreaChangeStart.Invoke(index);
         StartCoroutine(FadeInOut(index));
     }
 
